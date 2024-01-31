@@ -1,0 +1,16 @@
+<launch>
+  <param name="robot_description" command="$(find xacro)/xacro $(find rocket_description)/urdf/rocket.xacro"/>
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model rocket"/>
+  <node name="load_rocket_plugin" pkg="nodelet" type="nodelet" args="load gazebo_ros/RocketPlugin rocket_plugin_nodelet_name">
+  <param name="robotNamespace" value="rocket"/>
+  <param name="baseLinkName" value="base_link"/>
+</node>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+</launch>

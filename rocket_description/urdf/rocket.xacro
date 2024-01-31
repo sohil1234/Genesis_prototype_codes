@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<robot name="rocket" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find rocket_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find rocket_description)/urdf/rocket.trans" />
+<xacro:include filename="$(find rocket_description)/urdf/rocket.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="-1.165726332011666e-14 5.706989665676984e-06 0.5464752172969405" rpy="0 0 0"/>
+    <mass value="9.506573887591763"/>
+    <inertia ixx="1.172174" iyy="1.172395" izz="0.011078" ixy="0.0" iyz="-1.2e-05" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://rocket_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://rocket_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+</robot>

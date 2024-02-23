@@ -2,7 +2,7 @@
 #include <LoRa.h>
 #include <ros.h>
 #include <std_msgs/String.h>
-
+#include <ArduinoHardware.h>
 #define ss 10
 #define rst 9
 #define dio0 2
@@ -12,14 +12,15 @@ String data = "";
 
 ros::NodeHandle nh;
 std_msgs::String str_msg;
-ros::Publisher arduino_data_pub("/arduino_data", &str_msg);
+ros::Publisher arduino_data_pub("arduino_data", &str_msg);
 
 void setup() {
+  // Serial.begin(57600);
   LoRa.setPins(ss, rst, dio0);
-  Serial.println("LoRa Receiver");
+  // Serial.println("LoRa Receiver");
 
   if (!LoRa.begin(433E6)) {
-    Serial.println("Starting LoRa failed!");
+    // Serial.println("Starting LoRa failed!");
     while (1);
   }
 
@@ -44,5 +45,5 @@ void loop() {
     arduino_data_pub.publish(&str_msg);
     nh.spinOnce(); // Handle ROS communication
   }
-  delay(500);
+  delay(50);
 }

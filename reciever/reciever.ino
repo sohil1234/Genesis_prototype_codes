@@ -15,8 +15,6 @@ std_msgs::String str_msg;
 ros::Publisher arduino_data_pub("/arduino_data", &str_msg);
 
 void setup() {
-  Serial.begin(9600);
-  while (!Serial);
   LoRa.setPins(ss, rst, dio0);
   Serial.println("LoRa Receiver");
 
